@@ -14,3 +14,5 @@ class ProductPageLocators:
     BUTTON_ADD_TO_BASKET = (By.XPATH, "//button[contains(@class,'btn btn-lg btn-primary btn-add-to-basket')]")
     COST_BASKET = (By.XPATH, "//div[contains(@class, 'basket-mini pull-right hidden-xs')]")
     COST_PRODUCT = (By.XPATH, "//p[contains(@class, 'price_color')]")
+    PRODUCT_NAME = (By.CSS_SELECTOR, "div.product_main h1")
+    MESSAGE_ABOUT_ADD = (By.XPATH, "//div[@class='alertinner ']/strong")
