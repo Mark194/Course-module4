@@ -4,6 +4,7 @@ import pytest
 
 based_link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer"
 urls = [f"{based_link}{str(i)}" for i in range(10)]
+urls[7] = pytest.param(urls[7], marks=pytest.mark.xfail)
 
 
 @pytest.mark.parametrize('url', urls)
