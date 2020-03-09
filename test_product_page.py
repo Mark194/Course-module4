@@ -25,11 +25,13 @@ class TestUserAddToBasketFromProductPage:
         login_page.register_now(fake.email(), fake.password())
         login_page.should_be_authorized_user()
 
+    @pytest.mark.need_review
     def test_user_cant_see_success_message(self, browser):
         page = ProductPage(browser, based_link)
         page.open()
         page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         page = ProductPage(browser, based_link)
         page.open()
@@ -37,9 +39,6 @@ class TestUserAddToBasketFromProductPage:
         page.add_to_basket()
         page.should_be_cost_equal()
         page.should_be_name_equal()
-
-
-
 
 
 @pytest.mark.parametrize('url', urls)
@@ -81,12 +80,14 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     page = ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page = ProductPage(browser, link)
     page.open()
