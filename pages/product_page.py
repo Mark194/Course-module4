@@ -23,3 +23,11 @@ class ProductPage(BasePage):
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
         message = self.browser.find_element(*ProductPageLocators.MESSAGE_ABOUT_ADD).text
         assert product_name.__eq__(message), 'Product name not in the message'
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_ABOUT_ADD), \
+            "Success message is presented, but should not be"
+
+    def should_not_be_message(self):
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_ABOUT_ADD), \
+            "Success message didn't disappear at the set time"
