@@ -5,7 +5,6 @@ from pages.basket_page import BasketPage
 import pytest
 import faker
 
-
 link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 based_link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer"
 urls = [f"{based_link}{str(i)}" for i in range(10)]
@@ -25,7 +24,6 @@ class TestUserAddToBasketFromProductPage:
         login_page.register_now(fake.email(), fake.password())
         login_page.should_be_authorized_user()
 
-    @pytest.mark.need_review
     def test_user_cant_see_success_message(self, browser):
         page = ProductPage(browser, based_link)
         page.open()
@@ -41,6 +39,7 @@ class TestUserAddToBasketFromProductPage:
         page.should_be_name_equal()
 
 
+@pytest.mark.need_review
 @pytest.mark.parametrize('url', urls)
 def test_guest_can_add_product_to_basket(browser, url):
     page = ProductPage(browser, url)
@@ -74,7 +73,6 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
 
 
 def test_guest_should_see_login_link_on_product_page(browser):
-
     page = ProductPage(browser, link)
     page.open()
     page.should_be_login_link()
@@ -95,4 +93,3 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_not_item_in_basket()
     basket_page.should_be_basket_is_empty()
-
